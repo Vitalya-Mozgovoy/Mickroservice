@@ -54,7 +54,7 @@ __<summary>Условие задачи</summary>__
 
 ### Схема:
 
-
+[Схема](https://github.com/Vitalya-Mozgovoy/Mickroservice/blob/master/Intro/assets/Схема.png)
 
 </details>
 
