@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nginx-busybox
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx
+  template:
+    metadata:
+      labels:
+        app: nginx
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+              name: nginx-80
+            - containerPort: 443
+              name: nginx-443
+      initContainers:
+        - name: busybox
+          image: busybox:latest
+#          command: ['sh', '-c', "until curl nginx-svc:80; do echo waiting for nginx-svc; sleep 3; done"]
+          command: ['sh', 'init.sh']
