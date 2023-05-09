@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: netology-pod
+spec:
+  containers:
+    - image: wbitt/network-multitool
+      name: multitool
+      env:
+        - name: HTTP_PORT
+          value: "9003"
+      ports:
+        - containerPort: 9003
+          name: multitool-9003
