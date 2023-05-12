@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: multitool-busybox
+  labels:
+    app: common
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: common
+  template:
+    metadata:
+      labels:
+        app: common
+    spec:
+      containers:
+        - name: multitool
+          image: wbitt/network-multitool
+          volumeMounts:
+            - name: vol
+              mountPath: /input
+        - name: busybox
+          image: busybox:latest
+          command: [ 'sh', '-c', 'while true; do echo Success! >> /output/success.txt; sleep 5; done' ]
+          volumeMounts:
+            - name: vol
+              mountPath: /output
+      volumes:
+        - name: vol
+          hostPath:
+            path: /var/data
